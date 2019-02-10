@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Registration form</title>
+<style>
+body{
+	text-align: center;
+}
+h1{
+text-align:center;
+color:red;
+}
+form{
+text-align:center;
+padding-top:20px;
+}
+label{
+color:blue;
+}
+input {
+      border: 0;
+      padding: 10px;
+      font-size: 18px;
+    }
+    input[type="submit"] {
+      background: red;
+      color: white;
+    }
+input[type=text]{
+width:30%;
+padding:5px 7px;
+background-color:#E6E6FA;
+}
+input[type=password]{
+width:30%;
+padding:5px 7px;
+background-color:#E6E6FA;
+}
+</style>
+</head>
+<body>
+<h1>Registration Form</h1>
+<form action="#" onsubmit="return validation()">
+<label>Username:</label>
+<input type="text" class="name" id="name"><br><br>
+<label>Password:</label>
+<input type="password" id="pass"><br><br>
+<label>Email:</label>
+<input type="text" id="email" required="@"><br><br>
+<label>Mobile Number:</label>
+<input type="text" class="number" id="no"><br><br>
+<input type="submit" name="submit" value="submit" id="btn">
+</form>
+<script>
+function validation(){
+number=document.getElementById('no').value;
+if(number==''){
+window.alert("Please fill the mobile number");
+}
+else if(number.length>10 ||number.length<10) //--Name must be atleast of 3 letters
+{window.alert("Invalid Number");
+}
+else {
+window.alert('your name was submitted');
+}
+}
+</script>
+</body>
+</html>
