@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset=""utf-8 />
+  <link href="style1.css" rel="stylesheet" />
+  <title>Working with Javascript</title>
+</head>
+<body>
+  <div id="wrapper">
+    <header>
+      <div id="page-banner">
+        <h1 class="title">Moviemania</h1>
+        <p>
+          Movies for everyone
+        </p>
+        <form id="search-movies">
+          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search movies..."/>
+        </form>
+      </div>
+    </header>
+    <div id="movie-list">
+      <h2 class="title">Movies to watch</h2>
+      <ul id="myUL">
+        <li>
+          <span class="name">Fight Club</span>
+          <span class="delete">Delete</span>
+        </li>
+        <li>
+          <span class="name">Shawshank Redemption</span>
+          <span class="delete">Delete</span>
+        </li>
+        <li>
+          <span class="name">Secret Life of Walter Mitty</span>
+          <span class="delete">Delete</span>
+        </li>
+        <li>
+          <span class="name">Dark Knight</span>
+          <span class="delete">Delete</span>
+        </li>
+      </ul>
+    </div>
+    <form id="add-movie">
+      <input type="checkbox" id="hide" onclick="showMe('movie-list',this)"/>
+      <label for="hide">Hide the List</label>
+      <input type="text" placeholder="Add a movie..." />
+      <button id="add" onclick="myFunction()">Add</button>
+    </form>
+  </div>
+  <script>
+    const addForm = document.forms['add-movie'];
+addForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  var value = addForm.querySelector('input[type="text"]').value;
+  var li = document.createElement('li');
+  var movieName = document.createElement('span');
+  var deleteBtn = document.createElement('span');
+  li.appendChild(movieName);
+  li.appendChild(deleteBtn);
+  list.appendChild(li);
+  deleteBtn.textContent =  'delete';
+  movieName.textContent = value;
+  movieName.classList.add('name');
+  deleteBtn.classList.add('delete');
+})
+
+
+
+//Delete a movie from movie-list
+var list = document.querySelector('#movie-list ul');
+
+list.addEventListener('click', function(e){
+if(e.target.className === 'delete'){ console.log(e.target);
+const li = e.target.parentElement;
+console.log(li);
+li.parentNode.removeChild(li);
+list.removeChild(li);
+  }
+});
+
+
+//Hide the movie list
+function showMe(i,b) {
+var a= (b.checked) ? "none" : "block";
+document.getElementById(i).style.display =a;
+}
+
+
+//Search a movie in given list
+function myFunction() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("span")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
+  </script>
+</body>
+</html>
